@@ -1,0 +1,184 @@
+﻿@using Tourist_VietripInsum_2023.Models
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Admin/AdminView.cshtml";
+    ViewBag.Name = "Trang chủ";
+    TouristEntities1 db = new TouristEntities1();
+    var tourmanagersff = db.NhanViens.ToList().Count();
+    var customer = db.KhachHangs.ToList().Count();
+}
+<link rel="stylesheet" type="text/css" href="~/Content/style_profile.css">
+<style>
+    a :hover {
+        color: gray;
+        opacity: 80%;
+    }
+</style>
+
+@{
+    var checkMessage = TempData["AlertMessage"];
+    if (checkMessage == "Login sucess")
+    {
+        <script>
+            swal({
+                title: "Login success!",
+                text: "Welcome to your back!",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <!-- col-6 -->
+                <div class="col-lg-6 col-xs-12">
+                    <a class="widget-small info coloured-icon @ViewBag.qlk" href="/Admin/ListOfStaff" style="text-decoration: none;">
+                        <i class='icon bx bxs-user-account fa-3x'></i>
+                        <div class="info">
+                            <h4>Nhân viên</h4>
+                            <p><b>Tổng @tourmanagersff nhân viên</b></p>
+                            <p class="info-tong">Chịu trách nhiệm quản lý tour: thêm, xóa, sửa tour.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- col-6 -->
+                <div class="col-lg-6 col-xs-12">
+                    <a class="widget-small primary coloured-icon" href="/Admin/ListOfCustomers" style="text-decoration: none;">
+                        <i class='icon bx bxs-shopping-bag-alt fa-3x'></i>
+                        <div class="info">
+                            <h4>Khách hàng</h4>
+                            <p><b>Tổng @customer khách hàng</b></p>
+                            <p class="info-tong">Bao gồm khách hàng có tài khoản và khách hàng chưa có tài khoản</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="tile">
+                <h3 class="tile-title">
+                    <i class="bx bxs-user"></i>
+                    Thông tin cá nhân
+                </h3>
+                <div class="row rounded-lg d-block d-sm-flex">
+                    <div class="col-lg-4 col-md-3 col-sm-12 profile-tab-nav border-right">
+                        <div class="p-4">
+                            @{var user1 = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
+                                var img = user1.HinhDaiDien;
+                                if (img == null)
+                                {
+                                    <div class="img text-center mb-3">
+                                        <img style="width: 100px; height: 100px; border-radius: 50%" src="~/Content/Images/account.png" alt="Image" class="shadow">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="img text-center mb-3">
+                                        <img style="width: 100px; height: 100px; border-radius: 50%" src="@user1.HinhDaiDien" alt="Image" class="shadow">
+                                    </div>
+                                }
+                                <h4 class="text-center">
+                                    @user1.HoTen
+                                </h4>
+                            }
+                            <div class="nav flex-column nav-pills online" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <p>
+                                    <i class=' bx bxs-circle text-success'></i><span class="app-menu__label">Trực tuyến</span>
+                                </p>
+                            </div>
+                            <br />
+                            <div class="text-center mb-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                                <span class="editProfile">Chỉnh sửa</span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-11 col-sm-12 tab-content" id="v-pills-tabContent">
+                        <div class="" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <h4 class="title_acc text-danger">Tổng quan</h4>
+                            @{
+                                var user = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div>
+                                            <label>Chức vụ</label>
+                                            <h6>@user.MaCV</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Mã nhân viên</label>
+                                            <h6>@user.MaNV</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Số điện thoại</label>
+                                            <h6>@user.Sdt</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Địa chỉ</label>
+                                            <h6>@user.DiaChi</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Email</label>
+                                            <h6>@user.Email</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Ngày sinh</label>
+                                            @{ 
+                                                var ngaysinh = String.Format("{0:d/M/yyyy}", user.NgaySinh);
+                                            }
+                                            <h6>@ngaysinh</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Giới tính</label>
+                                            <h6>@user.GioiTinh</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+                            <h4 class="title_acc text-danger">Đăng nhập</h4>
+                            @{
+                                var user2 = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Tên đăng nhập</label>
+                                            <h6>@user2.Username</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label>Mật khẩu</label>
+                                            <h6>*********</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

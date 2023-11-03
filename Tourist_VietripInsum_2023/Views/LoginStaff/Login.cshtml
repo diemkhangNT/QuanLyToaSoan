@@ -1,0 +1,136 @@
+﻿@model Tourist_VietripInsum_2023.Models.NhanVien
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/styleLogin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Login Form</title>
+</head>
+<body>
+    @{
+        var ktr = TempData["error"];
+        if (ktr == "err")
+        {
+            <script>
+                swal({
+                    title: "Login ",
+                    text: "Invalid Username / Password!",
+                    icon: "error",
+                    button: "OK",
+                });
+            </script>
+        }
+    }
+    <div class="box">
+        <div class="container">
+            <div class="top">
+                <span>
+                    <img class="logo1" src="~/Content/Images/logo_project.png" width="60px" height="75px;"
+                         alt="User Image">
+                </span>
+                <span class="logo" style="color: #f2e193; font-size: 40px; display: flex; justify-content: center; ">SaiGon Travels</span>
+            </div>
+            <div class="body_form">
+                <header>Staff Login</header>
+                @using (Html.BeginForm("Login", "LoginStaff", FormMethod.Post))
+                {
+                    <div class="wrap-input100 validate-input input-field">
+                        <input class="input100 input" type="text" placeholder="Enter username" name="UserName"
+                               id="UserName" required>
+                        @*<span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class='bx bx-user'></i>
+                            </span>*@
+                    </div>
+
+                    <div class="wrap-input100 validate-input input-field">
+                        @*<input id="password-field" type="password" class="form-control" name="password" value="secret">*@
+
+
+                        <input autocomplete="off" class="input100 input" type="password" placeholder="Enter password"
+                               name="Password" id="Password" required>
+                        <span toggle="#password-field" id="spanElement" class="bx fa-fw bx-hide field-icon click-eye"></span>
+                        
+                        <style>
+                            .field-icon {
+                                float: left;
+                                margin-right: 0;
+                                padding-left: 270px;
+                                margin-top: -40px;
+                                font-size: 16px;
+                                position: relative;
+                                z-index: 2;
+                                color: black;
+                            }
+                        </style>
+
+                    </div>
+
+                    <!--=====ĐĂNG NHẬP======-->
+                    <div class="container-login100-form-btn" style="padding-top:20px">
+                        <input type="submit" class="submit" value="Login" />
+                    </div>
+                }
+
+                <div class="bottom">
+                    <div class="left">
+                    </div>
+                    <div class="middle">
+
+                    </div>
+                    <div class="right">
+                        <label><a href="~/LoginStaff/ForgotPassword">Forgot password?</a></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--dialog_message -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    @*<script src="Scripts/jquery-1.4.1.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/main.js"></script>
+    <script type="text/javascript">
+        //show - hide mật khẩu
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text"
+            } else {
+                x.type = "password";
+            }
+        }
+        $(".click-eye").click(function () {
+            $(this).toggleClass("bx-show bx-hide");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+        const ipnElement = document.querySelector('#Password')
+        const spanElement = document.querySelector('#spanElement')
+        // step 2
+        spanElement.addEventListener('click', function () {
+            // step 3
+            const currentType = ipnElement.getAttribute('type')
+            // step 4
+            ipnElement.setAttribute(
+                'type',
+                currentType === 'password' ? 'text' : 'password'
+            )
+        })
+    </script>
+
+</body>
+</html>
+

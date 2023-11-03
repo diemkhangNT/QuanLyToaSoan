@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Tourist_VietripInsum_2023.Models.NhanVien>
+@{
+    ViewBag.Title = "Danh sách nhân viên";
+    Layout = "~/Views/Admin/AdminView.cshtml";
+    ViewBag.Name = "Danh sách nhân viên";
+}
+@{
+    var data = TempData["thongbao"];
+    if (data == "taothanhcong")
+    {
+        <script>
+            swal("Good job!", "Bạn đã tạo tài khoản nhân viên", "success");
+        </script>
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button" style="padding-left:10px">
+                    <div class="col-sm-2">
+                        <a class="btn btn-success btn-sm " type="button" title="CreateStaff" href="/Admin/CreateStaff">
+                            Thêm nhân viên
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-warning btn-sm " type="button" title="Back" href="/Admin/HomePage">
+                            Quay lại trang chủ
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row table-responsive" style="padding: 0 10px">
+                    <table class="table table-hover table-bordered js-copytextarea dataTable no-footer" cellpadding="0" cellspacing="0" border="0" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <thead style="background-color: #ffd43b;">
+                            <tr>
+                            <tr role="row" class="col-staff">
+                                <th class="sorting">Hình</th>
+                                <th class="sorting">Mã NV</th>
+                                <th class="sorting">Nhân viên</th>
+                                <th class="sorting">Vị trí</th>
+                                <th class="sorting">Tên đăng nhập</th>
+                                <th class="sorting"></th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align: center">
+                                    <img src="@item.HinhDaiDien" width="50" height="50" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaNV)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoTen)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ChucVu.TenCV)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+
+                                @{ var user = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];}
+                                @if (item.MaNV == user.MaNV)
+                                {
+                                    <td style="text-align: center;"></td>
+                                }
+                                else
+                                {
+                                    <td style="text-align: center;">
+                                        <a href="/Admin/EditStaff/@item.MaNV" class="btn btn-outline-primary btn-sm" ata-toggle="tooltip" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="/Admin/DetailStaff/@item.MaNV" class="btn btn-outline-primary btn-sm" ata-toggle="tooltip" title="Edit">
+                                            <i class="fas fa-train"></i>
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

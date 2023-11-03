@@ -1,0 +1,93 @@
+﻿@model Tourist_VietripInsum_2023.Models.ChiTietTour
+
+@{
+    ViewBag.Title = "CreateDetailTour";
+    Layout = "~/Views/Tourmanager/LayoutTM/_ViewTM.cshtml";
+    ViewBag.Name = "Create Detail Tour";
+    ViewBag.qlt = "active";
+
+}
+
+<div class="tile">
+    <h3 class="tile-title">Tạo mới một chi tiết của tour @Session["tempdata"]</h3>
+
+    <div class="tile-body">
+
+        <form method="post" enctype="multipart/form-data" action="~/Tourmanager/CreateDetailTour/@Session["tempdata"]">
+
+            <div class="container">
+                <div class="row">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal row">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group col-sm-4">
+                                @Html.LabelFor(model => model.STT, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.STT, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                                    @Html.ValidationMessageFor(model => model.STT, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                @Html.LabelFor(model => model.MaDDTQ, "MaDDTQ", htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.DropDownList("MaDDTQ", null, htmlAttributes: new { @class = "form-control col-md-12" })
+                                    @Html.ValidationMessageFor(model => model.MaDDTQ, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                @Html.LabelFor(model => model.MaPTien, "MaPTien", htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.DropDownList("MaPTien", null, htmlAttributes: new { @class = "form-control col-md-12" })
+                                    @Html.ValidationMessageFor(model => model.MaPTien, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.TieuDe,new { @class = "form-control content-editor col-md-12" } )
+                                    @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                @Html.LabelFor(model => model.MotaChitiet, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.MotaChitiet, new { @class = "form-control content-editor col-md-12" })
+                                    @Html.ValidationMessageFor(model => model.MotaChitiet, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-warning" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "QuanLyTour", new RouteValueDictionary(
+                        new { controller = "Tourmanager", action = "QuanLyTour"}), new { @class ="btn btn-success"})
+    </div>
+</div>
+<script>
+    Imager.onchange = evt => {
+        const [file] = Imager.files
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            document.getElementById("preview").style.visibility = "visible";
+        }
+    }
+</script>
