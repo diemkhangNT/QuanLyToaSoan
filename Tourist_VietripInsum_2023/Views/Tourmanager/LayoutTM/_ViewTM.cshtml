@@ -49,15 +49,16 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <div class="app-sidebar__user">
-            <img class="app-sidebar__user-avatar" src="@{
-                            var user2 = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
-                            @user2.HinhDaiDien}" width="50px" alt="User Image">
+            <img class="app-sidebar__user-avatar" src="" width="50px" alt="User Image">
+            @*@{
+                var user2 = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
+                @user2.HinhDaiDien}*@
             <div>
                 <p class="app-sidebar__user-name">
                     <b>
-                        @{
+                        @*@{
                             var user = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
-                            @user.HoTen}
+                            @user.HoTen}*@
                     </b>
                 </p>
                 <p class="app-sidebar__user-designation">You are part of the company!</p>
@@ -78,34 +79,34 @@
                 </a>
             </li>
             <li>
-                <a class="app-menu__item  @ViewBag.qlt" href="/Tourmanager/QuanLyTour">
+                <a class="app-menu__item  @ViewBag.qlt" href="">
                     <i class='app-menu__icon bx bx-id-card'></i> <span class="app-menu__label">Quản lý tour</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item @ViewBag.dh" href="/Tourmanager/LocationManager">
+                <a class="app-menu__item @ViewBag.dh" href="">
                     <i class='app-menu__icon bx bx-user-voice'></i><span class="app-menu__label">Địa điểm tham quan</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item @ViewBag.hd" href="/Tourmanager/HotelManager">
+                <a class="app-menu__item @ViewBag.hd" href="">
                     <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Khách sạn - Di chuyển</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item @ViewBag.gslh" href="/Tourmanager/GiamSatLienHe">
+                <a class="app-menu__item @ViewBag.gslh" href="">
                     <i class='app-menu__icon bx bx-chat'></i><span class="app-menu__label">Giám sát liên hệ</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item  @ViewBag.prf" href="/Tourmanager/Profile/@user.MaNV">
+                <a class="app-menu__item  @ViewBag.prf" href="">
                     <i class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Profile</span>
                 </a>
             </li>
 
             <!-- User Menu-->
             <li>
-                <a class="app-menu__item btn_Logout" href="@Url.Action("Logout", "LoginStaff" )">
+                <a class="app-menu__item btn_Logout" href="@*@Url.Action("Logout", "LoginStaff" )*@">
                     <i class='app-menu__icon bx bx-log-out '></i><span class="app-menu__label">Đăng xuất</span>
                 </a>
             </li>
