@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tourist_VietripInsum_2023</RootNamespace>
     <AssemblyName>Tourist_VietripInsum_2023</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -208,6 +208,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Css\managementForm.css" />
     <Content Include="Content\FormTour.css" />
     <Content Include="Content\Guest.js" />
     <Content Include="Content\Guest\BookingBill.css" />
@@ -227,6 +228,7 @@
     <Content Include="Content\ImportImg\UploadImg.css" />
     <Content Include="Content\ImportImg\UploadImg.js" />
     <Content Include="Content\javascript\checkdata.js" />
+    <Content Include="Content\javascript\main.js" />
     <Content Include="Content\main-AD.css" />
     <Content Include="Content\ModalDialog.css" />
     <Content Include="Content\PagedList.css" />
@@ -457,11 +459,13 @@
     <Content Include="Views\Payment\PaymentFailed.cshtml" />
     <Content Include="Views\ChuBien\LayoutCB\_LayoutCB.cshtml" />
     <Content Include="Views\ChuBien\Index.cshtml" />
+
     <Content Include="Views\NhaBao\Layout\LayoutNhaBa.cshtml" />
     <Content Include="Views\NhaBao\TrangChuNhaBao.cshtml" />
     <Content Include="Views\NhaBao\QuanLyBaiBao.cshtml" />
     <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
     <Content Include="Views\NhaBao\ImportImage.cshtml" />
+    <Content Include="Views\ChuBien\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
