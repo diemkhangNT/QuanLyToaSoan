@@ -8,6 +8,7 @@ namespace Tourist_VietripInsum_2023.Controllers
 {
     public class ChuBienController : Controller
     {
+
         // GET: ChuBien
         public ActionResult Index()
         {

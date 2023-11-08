@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Tourist_VietripInsum_2023.Models.BaiBao>
+
+@{
+    ViewBag.Title = "QuanLyBaiBao";
+    Layout = "~/Views/NhaBao/Layout/LayoutNhaBa.cshtml";
+    ViewBag.qlbb = "active";
+    string status;
+    ViewBag.name = "Quản lý bài báo cá nhân";
+}
+
+@{
+    var data = TempData["thongbao"];
+    if (data == "taothanhcong")
+    {
+        <script>
+            swal("Good job!", "Thêm thành công !!", "success");
+        </script>
+    }
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button" style="padding-left:10px">
+                    <div class="col-sm-2">
+                        <a class="btn btn-success btn-sm " type="button" title="Thêm mới" href="/NhaBao/CreateBaiBao">
+                            Thêm mới
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row table-responsive" style="padding: 0 10px">
+                <table class="table table-hover table-bordered js-copytextarea dataTable no-footer" cellpadding="0" cellspacing="0" border="0" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                    <thead style="background-color: #ffd43b;">
+                        <tr>
+                        <tr role="row" class="col-staff">
+                            <th class="sorting">Mã</th>
+                            <th class="sorting">Tiêu đề</th>
+                            <th class="sorting">Ngày đăng</th>
+                            <th class="sorting">Trạng thái duyệt</th>
+                            <th class="sorting">Thể loại</th>
+                            <th class="sorting"></th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaBaiBao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TieuDe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDangBai)
+                            </td>
+                            @if (item.TrangThaiDuyet == true)
+                            { status = "Đã duyệt"; }
+                            else { status = "Chưa duyệt"; }
+                            <td>
+                                @status
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.TrangThaiBaiBao)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TheLoai.TenTL)
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="/NhaBao/EditBaiBao/@item.MaBaiBao" class="btn btn-outline-primary btn-sm" ata-toggle="tooltip" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="/NhaBao/DetailBaiBao/@item.MaBaiBao" class="btn btn-outline-primary btn-sm" ata-toggle="tooltip" title="Edit">
+                                    <i class="fas fa-train"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
