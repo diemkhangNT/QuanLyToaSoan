@@ -12,12 +12,12 @@ namespace Tourist_VietripInsum_2023.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class HinhAnh
+    public partial class sysdiagram
     {
-        public string MaHinhAnh { get; set; }
-        public string TenHinhAnh { get; set; }
-        public string MaBaiBao { get; set; }
-    
-        public virtual BaiBao BaiBao { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

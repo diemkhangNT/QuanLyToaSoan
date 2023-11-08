@@ -29,6 +29,7 @@ namespace Tourist_VietripInsum_2023.Models
         public virtual DbSet<ChucVu> ChucVus { get; set; }
         public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TheLoai> TheLoais { get; set; }
     }
 }

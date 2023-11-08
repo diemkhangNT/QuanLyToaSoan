@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a349d6e8048248c6a0dffc3685ccfb40" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyToaSoanModel.BaiBao" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="1771fdcb4b69438680233ebd78db2950" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyToaSoanModel.BaiBao" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyToaSoanModel.ChucVu" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyToaSoanModel.HinhAnh" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyToaSoanModel.HinhAnh" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyToaSoanModel.NhanVien" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyToaSoanModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyToaSoanModel.TheLoai" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <AssociationConnector Association="QuanLyToaSoanModel.FK__BaiBao__MaTL__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyToaSoanModel.FK__BaiBao__MaUser__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyToaSoanModel.FK__HinhAnh__MaBaiBa__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyToaSoanModel.FK_BaoBai_HinhAnh" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyToaSoanModel.FK__BaiBao__MaTL__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyToaSoanModel.FK__BaiBao__MaUser__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyToaSoanModel.FK__HinhAnh__MaBaiBa__5441852A" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyToaSoanModel.FK_Staff_Position" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

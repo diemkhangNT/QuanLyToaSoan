@@ -10,20 +10,16 @@ namespace Tourist_VietripInsum_2023.App_Start
 {
     public class AdminAuthorize: AuthorizeAttribute
     {
-        public string idPos { set; get; }
+        public string maCV { set; get; }
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            //ktra sesstion dang nhap=> thuc hien dang nhap
-            //nguoc lai => trang dang nhap
             NhanVien nvSession = (NhanVien)HttpContext.Current.Session["user"];
 
             if(nvSession!=null)
             {
-                //check quyen
-
                 QuanLyToaSoanEntities db = new QuanLyToaSoanEntities();
 
-                var count = db.NhanViens.Count(m => m.MaNV == nvSession.MaNV && m.MaCV == idPos);
+                var count = db.NhanViens.Count(m => m.MaNV == nvSession.MaNV && m.MaCV == maCV);
 
                 if (count != 0)
                 {

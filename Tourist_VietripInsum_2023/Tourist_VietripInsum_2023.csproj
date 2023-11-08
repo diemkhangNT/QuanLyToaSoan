@@ -147,6 +147,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChuBienController.cs" />
     <Compile Include="Controllers\LoginStaffController.cs" />
+    <Compile Include="Controllers\NhaBaoController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\TourmanagerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,6 +178,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NhanVien.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TheLoai.cs">
@@ -221,6 +225,8 @@
     <Content Include="Content\Images\dânng.jpg" />
     <Content Include="Content\Images\mientay.png" />
     <Content Include="Content\Images\tourhanoi.jpg" />
+    <Content Include="Content\ImportImg\UploadImg.css" />
+    <Content Include="Content\ImportImg\UploadImg.js" />
     <Content Include="Content\javascript\checkdata.js" />
     <Content Include="Content\javascript\main.js" />
     <Content Include="Content\main-AD.css" />
@@ -453,6 +459,12 @@
     <Content Include="Views\Payment\PaymentFailed.cshtml" />
     <Content Include="Views\ChuBien\LayoutCB\_LayoutCB.cshtml" />
     <Content Include="Views\ChuBien\Index.cshtml" />
+
+    <Content Include="Views\NhaBao\Layout\LayoutNhaBa.cshtml" />
+    <Content Include="Views\NhaBao\TrangChuNhaBao.cshtml" />
+    <Content Include="Views\NhaBao\QuanLyBaiBao.cshtml" />
+    <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
+    <Content Include="Views\NhaBao\ImportImage.cshtml" />
     <Content Include="Views\ChuBien\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
