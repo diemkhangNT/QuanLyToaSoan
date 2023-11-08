@@ -145,7 +145,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="common\MailHelp.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BaiBaosController.cs" />
     <Compile Include="Controllers\ChuBienController.cs" />
     <Compile Include="Controllers\LoginStaffController.cs" />
     <Compile Include="Controllers\NhaBaoController.cs" />
@@ -466,11 +465,6 @@
     <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
     <Content Include="Views\NhaBao\ImportImage.cshtml" />
     <Content Include="Views\ChuBien\Delete.cshtml" />
-    <Content Include="Views\BaiBaos\Create.cshtml" />
-    <Content Include="Views\BaiBaos\Delete.cshtml" />
-    <Content Include="Views\BaiBaos\Details.cshtml" />
-    <Content Include="Views\BaiBaos\Edit.cshtml" />
-    <Content Include="Views\BaiBaos\Index.cshtml" />
     <Content Include="Views\ChuBien\IndexQLBaiBao.cshtml" />
     <Content Include="Views\ChuBien\DetailsBaiBao.cshtml" />
   </ItemGroup>
