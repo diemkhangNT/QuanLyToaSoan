@@ -1,7 +1,9 @@
 ﻿@model Tourist_VietripInsum_2023.Models.BaiBao
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Quản lý bài báo";
+    ViewBag.Name = "Quản lý bài báo / Xóa bài báo";
+    ViewBag.qlt = "active";
     Layout = "~/Views/ChuBien/LayoutCB/_LayoutCB.cshtml";
 }
 
@@ -10,7 +12,7 @@
 
 <div class="box-form">
     <div class="form-horizontal">
-        <h4 class="title-form">XOÁ SẢN PHẨM - @Model.TieuDe</h4>
+        <h4 class="title-form">XOÁ BÀI BÁO - @Model.MaBaiBao</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group row p-0">
@@ -47,24 +49,24 @@
     </div>
 </div>
 <div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Delete", "ChuBien", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-
-    <div style="background: #000">
-        <div class="box-confirm box-shadow shadow">
-            <h4>Bạn Có Chắc Chắn Xoá?</h4>
-            <hr />
-            <h3 style="color: red;">Mã bài báo: @Model.MaBaiBao</h3>
-            <div class="row mt-4">
-                <input type="submit" value="Xác Nhận Xoá" class="btn btn-danger col-10" readonly style="width: 70%" />
-                <input value="Huỷ" id="btn-cancel" class="btn btn-default col" readonly style="width: 20%" />
+        @Html.Hidden("id", Model.MaBaiBao)
+        <div style="background: #000">
+            <div class="box-confirm box-shadow shadow">
+                <h4>Bạn Có Chắc Chắn Xoá?</h4>
+                <hr />
+                <h3 style="color: red;">Mã bài báo: @Model.MaBaiBao</h3>
+                <div class="row mt-4">
+                    <input type="submit" value="Xác Nhận Xoá" class="btn btn-danger col-10" readonly style="width: 70%" />
+                    <input value="Huỷ" id="btn-cancel" class="btn btn-default col" readonly style="width: 20%" />
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
-@Html.ActionLink("Back to List", "Index")
+@Html.ActionLink("Back to List", "IndexQLBaiBao")
 
 <script>
     var btnDelete = document.querySelector('#btn-delete');
