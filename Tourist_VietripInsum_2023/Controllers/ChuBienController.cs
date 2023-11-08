@@ -15,6 +15,14 @@ namespace Tourist_VietripInsum_2023.Controllers
         // GET: ChuBien
         public ActionResult Index()
         {
+            var dsnhabao = database.NhanViens.Where(s=> s.MaCV == "NB").ToList().Count();
+            Session["SoNhaBao"] = dsnhabao;
+            var dsdoitac = database.NhanViens.Where(s => s.MaCV == "DT").ToList().Count();
+            Session["SoDoiTac"] = dsdoitac;
+            var dsbaibao = database.BaiBaos.ToList().Count();
+            Session["SoBaiBao"] = dsbaibao;
+            var dstheloai = database.TheLoais.ToList().Count();
+            Session["SoTheLoai"] = dstheloai;
             return View();
         }
 
