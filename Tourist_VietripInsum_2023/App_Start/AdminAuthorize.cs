@@ -21,7 +21,7 @@ namespace Tourist_VietripInsum_2023.App_Start
             {
                 //check quyen
 
-                TouristEntities1 db = new TouristEntities1();
+                QuanLyToaSoanEntities db = new QuanLyToaSoanEntities();
 
                 var count = db.NhanViens.Count(m => m.MaNV == nvSession.MaNV && m.MaCV == idPos);
 

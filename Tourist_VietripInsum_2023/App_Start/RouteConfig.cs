@@ -22,7 +22,7 @@ namespace Tourist_VietripInsum_2023
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "HomePage", id = UrlParameter.Optional }
+                defaults: new { controller = "ChuBien", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
