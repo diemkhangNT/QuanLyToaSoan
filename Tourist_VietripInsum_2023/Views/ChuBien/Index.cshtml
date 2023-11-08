@@ -1,4 +1,5 @@
 ﻿
+@model IEnumerable<Tourist_VietripInsum_2023.Models.BaiBao>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/ChuBien/LayoutCB/_LayoutCB.cshtml"; 
@@ -20,9 +21,12 @@
             });
         </script>
     }
-}
-<html>
 
+
+}
+
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <body>
 
     <div class="row">
@@ -34,20 +38,20 @@
                     <a class="widget-small info coloured-icon @ViewBag.qlk" href="#">
                         <i class='icon bx bxs-user-account fa-3x'></i>
                         <div class="info">
-                            <h4>Thông tin tour</h4>
-                            <p><b>Tổng @TempData["tongTour"] tour được quản lý</b></p>
-                            <p class="info-tong">Tổng số tour được tạo</p>
+                            <h4>Thông tin nhà báo</h4>
+                            <p><b>Tổng @TempData["tongTour"] nhà báo được quản lý</b></p>
+                            <p class="info-tong">@Convert.ToString(Session["SoNhaBao"])</p>
                         </div>
                     </a>
                 </div>
                 <!-- col-6 -->
                 <div class="col-lg-6 col-xs-12">
                     <a class="widget-small warning coloured-icon @ViewBag.hh" href="#">
-                        <i class='icon bx bxs-receipt fa-3x'></i>
+                        <i class='icon bx bxs-user-badge fa-3x'></i>
                         <div class="info">
-                            <h4>Loại tour</h4>
-                            <p><b>Tổng @TempData["tongLT"] loại tour</b></p>
-                            <p class="info-tong">Tổng số loại tour được tạo</p>
+                            <h4>Thông tin đối tác</h4>
+                            <p><b>Tổng @TempData["tongLT"] Đối tác</b></p>
+                            <p class="info-tong">@Convert.ToString(Session["SoDoiTac"])</p>
                         </div>
                     </a>
                 </div>
@@ -62,22 +66,22 @@
                 <!-- col-6 -->
                 <div class="col-lg-6 col-xs-12">
                     <a class="widget-small danger coloured-icon @ViewBag.qlk" href="#">
-                        <i class='icon bx bxs-purchase-tag-alt fa-3x'></i>
+                        <i class='bx bxs-news fa-3x icon'></i>
                         <div class="info">
-                            <h4>Địa điểm tham quan</h4>
-                            <p><b>Có @TempData["tongDD"] Địa điểm tham quan</b></p>
-                            <p class="info-tong">Địa điểm tham quan được quản lý</p>
+                            <h4>Thông tin bài báo</h4>
+                            <p><b>Tổng số @TempData["tongDD"] bài báo</b></p>
+                            <p class="info-tong">@Convert.ToString(Session["SoBaiBao"])</p>
                         </div>
                     </a>
                 </div>
                 <!-- col-6 -->
                 <div class="col-lg-6 col-xs-12">
                     <a class="widget-small primary coloured-icon @ViewBag.hh" href="#">
-                        <i class='icon bx bxs-user-badge fa-3x'></i>
+                        <i class='bx bxs-category fa-3x icon'></i>
                         <div class="info">
-                            <h4>Tỉnh thành</h4>
-                            <p><b>Tổng @TempData["tongTinh"] tỉnh thành</b></p>
-                            <p class="info-tong">Tổng số tỉnh thành trong nước</p>
+                            <h4>Thể loại bài báo</h4>
+                            <p><b>Tổng @TempData["tongTinh"] thể loại bài báo</b></p>
+                            <p class="info-tong">@Convert.ToString(Session["SoTheLoai"])</p>
                         </div>
                     </a>
                 </div>
@@ -89,9 +93,9 @@
             <div class="tile">
                 <h3 class="tile-title">
                     <i class="bx bxs-map"></i>
-                    Visitors
+                    Phạm vi hoạt động (Việt Nam)
                 </h3>
-                <div class="embed-responsive-item" style="height: 310px">
+                <div class="embed-responsive-item" style="height: 292px">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15739731.94178454!2d96.86731624837675!3d15.607242742130582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31157a4d736a1e5f%3A0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1677896157419!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
                 </div>
@@ -100,19 +104,41 @@
         <div class="col-lg-6 col-md-12 col-sm-12 ">
             <div class="tile">
                 <h3 class="tile-title">
-                    Dữ liệu 6 tháng đầu năm
+                    Thống kê dữ liệu
                 </h3>
                 <div>
-                    <canvas class=" embed-responsive-item" id="barChartDemo"></canvas>
+                    <canvas id="myChart" style="width:100%;"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="~/Scripts/main.js"></script>
-    <script src="~/Scripts/chart.js"></script>
+
     <script src="~/Scripts/pace.min.js"></script>
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script>
+        var xValues = ["Nhà báo", "Đối tác", "bài báo", "Thể loại"];
+        var yValues = [@Convert.ToString(Session["SoNhaBao"]), @Convert.ToString(Session["SoDoiTac"]), @Convert.ToString(Session["SoBaiBao"]), @Convert.ToString(Session["SoTheLoai"])];
+        var barColors = ["red", "green", "blue", "orange", "brown"];
 
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Thống kê"
+                }
+            }
+        });
+    </script>
 </body>
 </html>
