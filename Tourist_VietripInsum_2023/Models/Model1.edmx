@@ -13,7 +13,6 @@
           <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NgayDangBai" Type="datetime" />
-          <Property Name="MaHinhAnh" Type="varchar" MaxLength="10" />
           <Property Name="TrangThaiDuyet" Type="bit" />
           <Property Name="TrangThaiBaiBao" Type="bit" />
           <Property Name="MaTL" Type="varchar" MaxLength="10" />
@@ -50,6 +49,16 @@
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
           <Property Name="HinhDaiDien" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TheLoai">
           <Key>
             <PropertyRef Name="MaTL" />
@@ -57,7 +66,7 @@
           <Property Name="MaTL" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TenTL" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BaiBao__MaTL__38996AB5">
+        <Association Name="FK__BaiBao__MaTL__5070F446">
           <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
           <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="*" />
           <ReferentialConstraint>
@@ -69,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BaiBao__MaUser__398D8EEE">
+        <Association Name="FK__BaiBao__MaUser__5165187F">
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
           <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="*" />
           <ReferentialConstraint>
@@ -81,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HinhAnh__MaBaiBa__3C69FB99">
+        <Association Name="FK__HinhAnh__MaBaiBa__5441852A">
           <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="1" />
           <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,18 +99,6 @@
             </Principal>
             <Dependent Role="HinhAnh">
               <PropertyRef Name="MaBaiBao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaoBai_HinhAnh">
-          <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="0..1" />
-          <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HinhAnh">
-              <PropertyRef Name="MaHinhAnh" />
-            </Principal>
-            <Dependent Role="BaiBao">
-              <PropertyRef Name="MaHinhAnh" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -122,22 +119,19 @@
           <EntitySet Name="ChucVu" EntityType="Self.ChucVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HinhAnh" EntityType="Self.HinhAnh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TheLoai" EntityType="Self.TheLoai" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BaiBao__MaTL__38996AB5" Association="Self.FK__BaiBao__MaTL__38996AB5">
+          <AssociationSet Name="FK__BaiBao__MaTL__5070F446" Association="Self.FK__BaiBao__MaTL__5070F446">
             <End Role="TheLoai" EntitySet="TheLoai" />
             <End Role="BaiBao" EntitySet="BaiBao" />
           </AssociationSet>
-          <AssociationSet Name="FK__BaiBao__MaUser__398D8EEE" Association="Self.FK__BaiBao__MaUser__398D8EEE">
+          <AssociationSet Name="FK__BaiBao__MaUser__5165187F" Association="Self.FK__BaiBao__MaUser__5165187F">
             <End Role="NhanVien" EntitySet="NhanVien" />
             <End Role="BaiBao" EntitySet="BaiBao" />
           </AssociationSet>
-          <AssociationSet Name="FK__HinhAnh__MaBaiBa__3C69FB99" Association="Self.FK__HinhAnh__MaBaiBa__3C69FB99">
+          <AssociationSet Name="FK__HinhAnh__MaBaiBa__5441852A" Association="Self.FK__HinhAnh__MaBaiBa__5441852A">
             <End Role="BaiBao" EntitySet="BaiBao" />
             <End Role="HinhAnh" EntitySet="HinhAnh" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaoBai_HinhAnh" Association="Self.FK_BaoBai_HinhAnh">
-            <End Role="HinhAnh" EntitySet="HinhAnh" />
-            <End Role="BaiBao" EntitySet="BaiBao" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Position" Association="Self.FK_Staff_Position">
             <End Role="ChucVu" EntitySet="ChucVu" />
@@ -157,15 +151,13 @@
           <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayDangBai" Type="DateTime" Precision="3" />
-          <Property Name="MaHinhAnh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TrangThaiDuyet" Type="Boolean" />
           <Property Name="TrangThaiBaiBao" Type="Boolean" />
           <Property Name="MaTL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TheLoai" Relationship="Self.FK__BaiBao__MaTL__38996AB5" FromRole="BaiBao" ToRole="TheLoai" />
-          <NavigationProperty Name="NhanVien" Relationship="Self.FK__BaiBao__MaUser__398D8EEE" FromRole="BaiBao" ToRole="NhanVien" />
-          <NavigationProperty Name="HinhAnhs" Relationship="Self.FK__HinhAnh__MaBaiBa__3C69FB99" FromRole="BaiBao" ToRole="HinhAnh" />
-          <NavigationProperty Name="HinhAnh" Relationship="Self.FK_BaoBai_HinhAnh" FromRole="BaiBao" ToRole="HinhAnh" />
+          <NavigationProperty Name="TheLoai" Relationship="Self.FK__BaiBao__MaTL__5070F446" FromRole="BaiBao" ToRole="TheLoai" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK__BaiBao__MaUser__5165187F" FromRole="BaiBao" ToRole="NhanVien" />
+          <NavigationProperty Name="HinhAnhs" Relationship="Self.FK__HinhAnh__MaBaiBa__5441852A" FromRole="BaiBao" ToRole="HinhAnh" />
         </EntityType>
         <EntityType Name="ChucVu">
           <Key>
@@ -182,8 +174,7 @@
           <Property Name="MaHinhAnh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenHinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaBaiBao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="BaiBao" Relationship="Self.FK__HinhAnh__MaBaiBa__3C69FB99" FromRole="HinhAnh" ToRole="BaiBao" />
-          <NavigationProperty Name="BaiBaos" Relationship="Self.FK_BaoBai_HinhAnh" FromRole="HinhAnh" ToRole="BaiBao" />
+          <NavigationProperty Name="BaiBao" Relationship="Self.FK__HinhAnh__MaBaiBa__5441852A" FromRole="HinhAnh" ToRole="BaiBao" />
         </EntityType>
         <EntityType Name="NhanVien">
           <Key>
@@ -200,8 +191,18 @@
           <Property Name="NgaySinh" Type="DateTime" Precision="3" />
           <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="HinhDaiDien" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BaiBaos" Relationship="Self.FK__BaiBao__MaUser__398D8EEE" FromRole="NhanVien" ToRole="BaiBao" />
+          <NavigationProperty Name="BaiBaos" Relationship="Self.FK__BaiBao__MaUser__5165187F" FromRole="NhanVien" ToRole="BaiBao" />
           <NavigationProperty Name="ChucVu" Relationship="Self.FK_Staff_Position" FromRole="NhanVien" ToRole="ChucVu" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TheLoai">
           <Key>
@@ -209,9 +210,9 @@
           </Key>
           <Property Name="MaTL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenTL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="BaiBaos" Relationship="Self.FK__BaiBao__MaTL__38996AB5" FromRole="TheLoai" ToRole="BaiBao" />
+          <NavigationProperty Name="BaiBaos" Relationship="Self.FK__BaiBao__MaTL__5070F446" FromRole="TheLoai" ToRole="BaiBao" />
         </EntityType>
-        <Association Name="FK__BaiBao__MaTL__38996AB5">
+        <Association Name="FK__BaiBao__MaTL__5070F446">
           <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
           <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +224,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BaiBao__MaUser__398D8EEE">
+        <Association Name="FK__BaiBao__MaUser__5165187F">
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
           <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HinhAnh__MaBaiBa__3C69FB99">
+        <Association Name="FK__HinhAnh__MaBaiBa__5441852A">
           <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="1" />
           <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
           <ReferentialConstraint>
@@ -244,18 +245,6 @@
             </Principal>
             <Dependent Role="HinhAnh">
               <PropertyRef Name="MaBaiBao" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaoBai_HinhAnh">
-          <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="0..1" />
-          <End Role="BaiBao" Type="Self.BaiBao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HinhAnh">
-              <PropertyRef Name="MaHinhAnh" />
-            </Principal>
-            <Dependent Role="BaiBao">
-              <PropertyRef Name="MaHinhAnh" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -276,22 +265,19 @@
           <EntitySet Name="ChucVus" EntityType="Self.ChucVu" />
           <EntitySet Name="HinhAnhs" EntityType="Self.HinhAnh" />
           <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
-          <AssociationSet Name="FK__BaiBao__MaTL__38996AB5" Association="Self.FK__BaiBao__MaTL__38996AB5">
+          <AssociationSet Name="FK__BaiBao__MaTL__5070F446" Association="Self.FK__BaiBao__MaTL__5070F446">
             <End Role="TheLoai" EntitySet="TheLoais" />
             <End Role="BaiBao" EntitySet="BaiBaos" />
           </AssociationSet>
-          <AssociationSet Name="FK__BaiBao__MaUser__398D8EEE" Association="Self.FK__BaiBao__MaUser__398D8EEE">
+          <AssociationSet Name="FK__BaiBao__MaUser__5165187F" Association="Self.FK__BaiBao__MaUser__5165187F">
             <End Role="NhanVien" EntitySet="NhanViens" />
             <End Role="BaiBao" EntitySet="BaiBaos" />
           </AssociationSet>
-          <AssociationSet Name="FK__HinhAnh__MaBaiBa__3C69FB99" Association="Self.FK__HinhAnh__MaBaiBa__3C69FB99">
+          <AssociationSet Name="FK__HinhAnh__MaBaiBa__5441852A" Association="Self.FK__HinhAnh__MaBaiBa__5441852A">
             <End Role="BaiBao" EntitySet="BaiBaos" />
             <End Role="HinhAnh" EntitySet="HinhAnhs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaoBai_HinhAnh" Association="Self.FK_BaoBai_HinhAnh">
-            <End Role="HinhAnh" EntitySet="HinhAnhs" />
-            <End Role="BaiBao" EntitySet="BaiBaos" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Position" Association="Self.FK_Staff_Position">
             <End Role="ChucVu" EntitySet="ChucVus" />
@@ -311,7 +297,6 @@
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="NgayDangBai" ColumnName="NgayDangBai" />
-                <ScalarProperty Name="MaHinhAnh" ColumnName="MaHinhAnh" />
                 <ScalarProperty Name="TrangThaiDuyet" ColumnName="TrangThaiDuyet" />
                 <ScalarProperty Name="TrangThaiBaiBao" ColumnName="TrangThaiBaiBao" />
                 <ScalarProperty Name="MaTL" ColumnName="MaTL" />
@@ -350,6 +335,17 @@
                 <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
                 <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
                 <ScalarProperty Name="HinhDaiDien" ColumnName="HinhDaiDien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLyToaSoanModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

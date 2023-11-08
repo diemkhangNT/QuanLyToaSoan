@@ -1,0 +1,85 @@
+﻿@model Tourist_VietripInsum_2023.Models.BaiBao
+
+@{
+    ViewBag.Title = "Quản lý bài báo";
+    ViewBag.Name = "Quản lý bài báo / Xóa bài báo";
+    ViewBag.qlt = "active";
+    Layout = "~/Views/ChuBien/LayoutCB/_LayoutCB.cshtml";
+}
+
+<link href="~/Content/Css/managementForm.css" rel="stylesheet" />
+<script src="~/Scripts/main.js" language="JavaScript" type="text/javascript"></script>
+
+<div class="box-form">
+    <div class="form-horizontal">
+        <h4 class="title-form">XOÁ BÀI BÁO - @Model.MaBaiBao</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Tiêu đề</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.TieuDe)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Nôi dung</span>
+            <p class="delete-form col-10 m-0 textArea">
+                @Html.DisplayFor(model => model.NoiDung)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Ngày đăng</span>
+            <p class="delete-form col-10 m-0">
+                @Html.DisplayFor(model => model.NgayDangBai)
+            </p>
+        </div>
+
+        <div class="form-group row p-0">
+            <span class="col label-name">Thể Loại</span>
+            <p class="delete-form col-10 m-0 ">
+                @Html.DisplayNameFor(model => model.TheLoai.TenTL)
+            </p>
+        </div>
+
+        <div class="d-flex justify-content-center form-btn">
+            <input id="btn-delete" value="Xoá" class="btn btn-danger" readonly style="width: 100%" />
+        </div>
+    </div>
+</div>
+<div>
+    @using (Html.BeginForm("Delete", "ChuBien", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("id", Model.MaBaiBao)
+        <div style="background: #000">
+            <div class="box-confirm box-shadow shadow">
+                <h4>Bạn Có Chắc Chắn Xoá?</h4>
+                <hr />
+                <h3 style="color: red;">Mã bài báo: @Model.MaBaiBao</h3>
+                <div class="row mt-4">
+                    <input type="submit" value="Xác Nhận Xoá" class="btn btn-danger col-10" readonly style="width: 70%" />
+                    <input value="Huỷ" id="btn-cancel" class="btn btn-default col" readonly style="width: 20%" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@Html.ActionLink("Back to List", "IndexQLBaiBao")
+
+<script>
+    var btnDelete = document.querySelector('#btn-delete');
+    var modelBox = document.querySelector('.box-confirm');
+    var btnCancel = document.querySelector('#btn-cancel');
+
+
+    btnDelete.onclick = function () {
+        modelBox.style.display = "block";
+    }
+
+    btnCancel.onclick = function () {
+        modelBox.style.display = "none";
+    }
+
+</script>

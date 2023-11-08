@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,8 +38,9 @@
             </li>
         </ul>-->
         <ul class="app-nav">
-            <img class="app-nav__item" src="~/Content/Images/logo_project.png" width="40px" height="50px;" alt="User Image">
-            <h3 class="app-nav__item justify-content-between">First News</h3>
+            <img class="app-nav__item" src="~/Content/Images/logo_project.png" width="40px" height="50px;"
+                 alt="User Image">
+            <h3 class="app-nav__item justify-content-between">TienPhongGroup</h3>
         </ul>
 
 
@@ -48,20 +49,19 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <div class="app-sidebar__user">
-            <img class="app-sidebar__user-avatar" src="~/images/user.png" width="50px" alt="User Image">
-            @*@{
+            <img class="app-sidebar__user-avatar" src="" width="50px" alt="User Image">
+            @{
                 var user2 = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
-                @user2.HinhDaiDien}*@
+                @user2.HinhDaiDien}
             <div>
                 <p class="app-sidebar__user-name">
                     <b>
-                        @*@{
+                        @{
                             var user = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
-                            @user.HoTen}*@
-                        Nguyễn Thị Diễm Khang
+                            @user.HoTen}
                     </b>
                 </p>
-                <p class="app-sidebar__user-designation">You are a part of the company!</p>
+                <p class="app-sidebar__user-designation">You are part of the company!</p>
             </div>
         </div>
         <hr>
@@ -69,28 +69,28 @@
             <li>
                 <a class="app-menu__item haha" href="#">
                     <i class='app-menu__icon bx bx-tachometer'></i>
-                    <span class="">CHỦ BIÊN</span>
+                    <span class="">NHÀ BÁO</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item @ViewBag.home" href="~/ChuBien/Index">
+                <a class="app-menu__item @ViewBag.home" href="~/NhaBao/TrangChuNhaBao">
                     <i class='app-menu__icon bx bx-task'></i>
                     <span class="app-menu__label">Tổng quan</span>
                 </a>
             </li>
             <li>
-                <a class="app-menu__item  @ViewBag.qlt" href="~/ChuBien/IndexQLBaiBao">
+                <a class="app-menu__item  @ViewBag.qlbb" href="~/NhaBao/QuanLyBaiBao">
                     <i class='app-menu__icon bx bx-id-card'></i> <span class="app-menu__label">Quản lý bài báo</span>
                 </a>
             </li>
-            <li>
+            @*<li>
                 <a class="app-menu__item @ViewBag.dh" href="">
-                    <i class='app-menu__icon bx bx-user-voice'></i><span class="app-menu__label">Quảng lý quảng cáo</span>
+                    <i class='app-menu__icon bx bx-user-voice'></i><span class="app-menu__label">Địa điểm tham quan</span>
                 </a>
             </li>
             <li>
                 <a class="app-menu__item @ViewBag.hd" href="">
-                    <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý đơn đặt hàng</span>
+                    <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Khách sạn - Di chuyển</span>
                 </a>
             </li>
             <li>
@@ -102,7 +102,7 @@
                 <a class="app-menu__item  @ViewBag.prf" href="">
                     <i class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Profile</span>
                 </a>
-            </li>
+            </li>*@
 
             <!-- User Menu-->
             <li>
@@ -147,15 +147,12 @@
     <!-- Data table plugin-->
     <script src="~/Scripts/plugin/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/plugin/dataTables.bootstrap.min.js"></script>
+    @*//TimKiem*@
     <script type="text/javascript">
         $('#sampleTable').DataTable(); //TimKiem
         $('#sampleTable1').DataTable();
         $('#sampleTable2').DataTable();
         $('#sampleTable3').DataTable();
-    </script>
-    @*//TimKiem*@
-
-    <script type="text/javascript">
         //Thời Gian
         function time() {
             var today = new Date();
@@ -201,27 +198,27 @@
     <script type="text/javascript">
         var data = {
             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
-        datasets: [{
-            label: "Dữ liệu đầu tiên",
-        fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
-        strokeColor: "rgb(255, 212, 59)",
-        pointColor: "rgb(255, 212, 59)",
-        pointStrokeColor: "rgb(255, 212, 59)",
-        pointHighlightFill: "rgb(255, 212, 59)",
-        pointHighlightStroke: "rgb(255, 212, 59)",
-        data: [20, 59, 90, 51, 56, 100]
+            datasets: [{
+                label: "Dữ liệu đầu tiên",
+                fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                strokeColor: "rgb(255, 212, 59)",
+                pointColor: "rgb(255, 212, 59)",
+                pointStrokeColor: "rgb(255, 212, 59)",
+                pointHighlightFill: "rgb(255, 212, 59)",
+                pointHighlightStroke: "rgb(255, 212, 59)",
+                data: [20, 59, 90, 51, 56, 100]
             },
-        {
-            label: "Dữ liệu kế tiếp",
-        fillColor: "rgba(9, 109, 239, 0.651)  ",
-        pointColor: "rgb(9, 109, 239)",
-        strokeColor: "rgb(9, 109, 239)",
-        pointStrokeColor: "rgb(9, 109, 239)",
-        pointHighlightFill: "rgb(9, 109, 239)",
-        pointHighlightStroke: "rgb(9, 109, 239)",
-        data: [48, 48, 49, 39, 86, 10]
+            {
+                label: "Dữ liệu kế tiếp",
+                fillColor: "rgba(9, 109, 239, 0.651)  ",
+                pointColor: "rgb(9, 109, 239)",
+                strokeColor: "rgb(9, 109, 239)",
+                pointStrokeColor: "rgb(9, 109, 239)",
+                pointHighlightFill: "rgb(9, 109, 239)",
+                pointHighlightStroke: "rgb(9, 109, 239)",
+                data: [48, 48, 49, 39, 86, 10]
             }
-        ]
+            ]
         };
         var ctxb = $("#barChartDemo").get(0).getContext("2d");
         var barChart = new Chart(ctxb).Bar(data);

@@ -24,7 +24,6 @@ namespace Tourist_VietripInsum_2023.Models
         public string TieuDe { get; set; }
         public string NoiDung { get; set; }
         public Nullable<System.DateTime> NgayDangBai { get; set; }
-        public string MaHinhAnh { get; set; }
         public Nullable<bool> TrangThaiDuyet { get; set; }
         public Nullable<bool> TrangThaiBaiBao { get; set; }
         public string MaTL { get; set; }
@@ -34,6 +33,5 @@ namespace Tourist_VietripInsum_2023.Models
         public virtual NhanVien NhanVien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnhs { get; set; }
-        public virtual HinhAnh HinhAnh { get; set; }
     }
 }

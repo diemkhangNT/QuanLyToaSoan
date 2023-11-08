@@ -4,9 +4,8 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Admin/AdminView.cshtml";
     ViewBag.Name = "Trang chủ";
-    TouristEntities1 db = new TouristEntities1();
+    QuanLyToaSoanEntities db = new QuanLyToaSoanEntities();
     var tourmanagersff = db.NhanViens.ToList().Count();
-    var customer = db.KhachHangs.ToList().Count();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/style_profile.css">
 <style>
@@ -42,12 +41,12 @@
                         <div class="info">
                             <h4>Nhân viên</h4>
                             <p><b>Tổng @tourmanagersff nhân viên</b></p>
-                            <p class="info-tong">Chịu trách nhiệm quản lý tour: thêm, xóa, sửa tour.</p>
+                            <p class="info-tong"></p>
                         </div>
                     </a>
                 </div>
                 <!-- col-6 -->
-                <div class="col-lg-6 col-xs-12">
+                @*<div class="col-lg-6 col-xs-12">
                     <a class="widget-small primary coloured-icon" href="/Admin/ListOfCustomers" style="text-decoration: none;">
                         <i class='icon bx bxs-shopping-bag-alt fa-3x'></i>
                         <div class="info">
@@ -56,7 +55,7 @@
                             <p class="info-tong">Bao gồm khách hàng có tài khoản và khách hàng chưa có tài khoản</p>
                         </div>
                     </a>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
