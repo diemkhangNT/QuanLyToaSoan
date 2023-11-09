@@ -46,7 +46,7 @@ namespace Tourist_VietripInsum_2023.Controllers
                 else if (role == cb)
                 {
                     TempData["AlertMessage"] = "Login sucess";
-                    return RedirectToAction("", "ChuBien");
+                    return RedirectToAction("Index", "ChuBien");
                 }
                 else if (role == ad)
                 {
