@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -117,5 +119,34 @@ namespace Tourist_VietripInsum_2023.Controllers
             }
            
         }
+        public ActionResult EditBaiBao(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiBao baibao = db.BaiBaos.Find(id);
+            if (baibao == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.MaTL = new SelectList(db.TheLoais, "MaTL", "TenTL", baibao.MaTL);
+            return View(baibao);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBaiBao([Bind(Include = "MaBaiBao,TieuDe,NoiDung,NgayDangBai,MaHinhAnh,TrangThaiDuyet,TrangThaiBaiBao,MaTL,MaUser")] BaiBao baiBao)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(baiBao).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("QuanLyBaiBao");
+            }
+            ViewBag.MaTL = new SelectList(db.TheLoais, "MaTL", "TenTL", baiBao.MaTL);
+
+            return View(baiBao);
+        }
+
     }
 }
