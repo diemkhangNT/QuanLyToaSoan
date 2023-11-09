@@ -1,0 +1,84 @@
+﻿@model Tourist_VietripInsum_2023.Models.BaiBao
+@{
+    ViewBag.Title = "Quản lý bài báo";
+    ViewBag.Name = "Quản lý bài báo / Chi tiết bài báo";
+    ViewBag.qlbb = "active";
+    Layout = "~/Views/NhaBao/Layout/LayoutNhaBa.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="tile">
+            <h3 class="tile-title">THÔNG TIN BÀI BÁO</h3>
+            <div class="tile-body element-button">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="@Model.HinhAnhs" width="300" height="300" />
+                    </div>
+                    <div class="col-md-8">
+                        <div style="font-size: 18px;">
+                            <div class="form-group" style="text-align: center;">
+                                <b>Mã bài báo: </b> @Html.DisplayFor(model => model.MaBaiBao)
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <b>Tiêu đề: </b> @Html.DisplayFor(model => model.TieuDe)
+                                    </div>
+                                    <div class="form-group">
+                                        <b>Tác giả: </b> @Html.DisplayFor(model => model.NhanVien.HoTen)
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <b>Thể loại: </b> @Html.DisplayFor(model => model.TheLoai.TenTL)
+                                    </div>
+                                    <div class=" form-group">
+                                        <b>Ngày đăng bài: </b> @Html.DisplayFor(model => model.NgayDangBai)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <table>
+                                    <thead style="background-color: #ffd43b;">
+                                        <tr>
+                                            <th aria-controls="sampleTable" rowspan="1" colspan="1" style="text-align: center;">Trạng thái duyệt</th>
+                                            <th aria-controls="sampleTable" rowspan="1" colspan="1" style="text-align: center;">Trạng thái bài báo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                @Html.DisplayFor(model => model.TrangThaiDuyet)
+                                            </td>
+                                            <td style="text-align: center;">
+                                                @Html.DisplayFor(model => model.TrangThaiBaiBao)
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="/NhaBao/QuanLyBaiBao" class="btn btn-outline-primary" style="margin-top:10px;" ata-toggle="tooltip" title="Trở lại">
+                    <i class="fas fc-agenda-view"></i> Trở lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="tile">
+            <h3 class="tile-title">Nội dung</h3>
+            <div class="tile-body table-responsive">
+                @Html.DisplayFor(model => model.NoiDung)
+            </div>
+        </div>
+
+    </div>
+</div>
+

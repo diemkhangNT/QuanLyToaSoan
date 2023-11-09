@@ -42,7 +42,20 @@ namespace Tourist_VietripInsum_2023.Controllers
             return View(list);
         }
 
-
+        // GET: BaiBaos/Details/5
+        public ActionResult DetailsBaiBao(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiBao baiBao = db.BaiBaos.Find(id);
+            if (baiBao == null)
+            {
+                return HttpNotFound();
+            }
+            return View(baiBao);
+        }
         public ActionResult CreateBaiBao()
         {
             return View();

@@ -468,6 +468,7 @@
     <Content Include="Views\NhaBao\EditBaiBao.cshtml" />
     <Content Include="Views\ChuBien\IndexQLBaiBao.cshtml" />
     <Content Include="Views\ChuBien\DetailsBaiBao.cshtml" />
+    <Content Include="Views\NhaBao\DetailsBaiBao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
