@@ -1,9 +1,112 @@
-﻿
+﻿@using Tourist_VietripInsum_2023.Models
 @{
     ViewBag.Title = "TrangChuNhaBao";
     Layout = "~/Views/NhaBao/Layout/LayoutNhaBa.cshtml";
     ViewBag.home = "active";
+    string status;
+    ViewBag.name = "Trang chủ";
+    QuanLyToaSoanEntities db = new QuanLyToaSoanEntities();
+    var user2 = (Tourist_VietripInsum_2023.Models.NhanVien)HttpContext.Current.Session["user"];
+    List<BaiBao> list = db.BaiBaos.Where(t => t.MaUser == user2.MaNV).ToList();
 }
 
-<h2>TrangChuNhaBao</h2>
+@{
+    var checkMessage = TempData["AlertMessage"];
+    if (checkMessage == "Login sucess")
+    {
+        <script>
+            swal({
+                title: "Đăng nhập thành công!",
+                text: "Chào mừng bạn đã quay trở lại!",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+    }
+    var tongbaibao = db.BaiBaos.Where(t => t.MaUser == user2.MaNV).Count();
+    var tongbaiduyet = db.BaiBaos.Where(t => t.MaUser == user2.MaNV && t.TrangThaiDuyet==true).Count();
+}
+
+    <div class="row">
+        <!--Thông tin kho và số sản phẩm sắp hết hàng-->
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <!-- col-6 -->
+                <div class="col-lg-6 col-xs-12">
+                    <a class="widget-small info coloured-icon @ViewBag.qlk" href="">
+                        <i class='icon bx bxs-user-account fa-3x'></i>
+                        <div class="info">
+                            <h4>Thông tin đặt tour</h4>
+                            <p><b>Tổng @tongbaibao bài báo </b></p>
+                            <p class="info-tong">Tổng số bài báo cá nhân được tạo</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- col-6 -->
+                <div class="col-lg-6 col-xs-12">
+                    <a class="widget-small warning coloured-icon @ViewBag.hh" href="">
+                        <i class='icon bx bxs-receipt fa-3x'></i>
+                        <div class="info">
+                            <h4>Phản hồi</h4>
+                            <p><b>Tổng @tongbaiduyet bài báo đã được duyệt</b></p>
+                            <p class="info-tong">Tổng bài báo được duyệt</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tile">
+                <h2 class="tile-title">Danh sách các bài báo cá nhân</h2>
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered js-copytextarea dataTable no-footer" cellpadding="0" cellspacing="0" border="0" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        @*//Phần render từng dòng trong C#*@
+                        <thead style="background-color: #ffd43b;">
+                            <tr>
+                                <th class="sorting">Mã</th>
+                                <th class="sorting">Tiêu đề</th>
+                                <th class="sorting">Trạng thái duyệt</th>
+                                <th class="sorting">Thể loại</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (list.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center"> Không tìm thấy </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in list)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaBaiBao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TieuDe)
+                                        </td>
+                                        @if (item.TrangThaiDuyet == true)
+                                        { status = "Đã duyệt"; }
+                                        else { status = "Chưa duyệt"; }
+                                        <td>
+                                            @status
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TheLoai.TenTL)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 

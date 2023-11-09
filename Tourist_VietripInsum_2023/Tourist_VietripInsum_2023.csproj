@@ -462,9 +462,10 @@
     <Content Include="Views\NhaBao\Layout\LayoutNhaBa.cshtml" />
     <Content Include="Views\NhaBao\TrangChuNhaBao.cshtml" />
     <Content Include="Views\NhaBao\QuanLyBaiBao.cshtml" />
-    <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
     <Content Include="Views\NhaBao\ImportImage.cshtml" />
     <Content Include="Views\ChuBien\Delete.cshtml" />
+    <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
+    <Content Include="Views\NhaBao\EditBaiBao.cshtml" />
     <Content Include="Views\ChuBien\IndexQLBaiBao.cshtml" />
     <Content Include="Views\ChuBien\DetailsBaiBao.cshtml" />
   </ItemGroup>

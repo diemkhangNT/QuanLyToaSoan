@@ -6,10 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using Tourist_VietripInsum_2023.Models;
+using Tourist_VietripInsum_2023.App_Start;
 using System.Data.Entity;
 
 namespace Tourist_VietripInsum_2023.Controllers
 {
+    [AdminAuthorize(maCV = "CB")]
     public class ChuBienController : Controller
     {
         QuanLyToaSoanEntities database = new QuanLyToaSoanEntities();
