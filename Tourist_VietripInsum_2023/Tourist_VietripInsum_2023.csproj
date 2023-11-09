@@ -459,13 +459,12 @@
     <Content Include="Views\Payment\PaymentFailed.cshtml" />
     <Content Include="Views\ChuBien\LayoutCB\_LayoutCB.cshtml" />
     <Content Include="Views\ChuBien\Index.cshtml" />
-
     <Content Include="Views\NhaBao\Layout\LayoutNhaBa.cshtml" />
     <Content Include="Views\NhaBao\TrangChuNhaBao.cshtml" />
     <Content Include="Views\NhaBao\QuanLyBaiBao.cshtml" />
-    <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
     <Content Include="Views\NhaBao\ImportImage.cshtml" />
     <Content Include="Views\ChuBien\Delete.cshtml" />
+    <Content Include="Views\NhaBao\CreateBaiBao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
